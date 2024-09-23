@@ -1,0 +1,63 @@
+.list {
+    display: flex;
+    /* Ensure no wrapping */
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+}
+main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color:rgb(45, 44, 47);
+}
+
+.item img {
+    width: 160px; /* Set your desired width */
+    height: 250px; /* Set your desired height */
+    object-fit: cover; /* Ensure the image covers the area */
+    border-radius: 10px; /* Optional: Rounded corners */
+}
+.list .item{
+    transition: .5s;
+    filter: brightness(0);
+}
+.list .item:hover{
+    filter: brightness(1);
+    transform: translateZ(100px);
+
+}
+
+.list .item:hover + * {
+    filter: brightness(0.6);
+    transform: translateZ(75px) rotateY(40deg);
+}
+
+.list .item:hover + * + * {
+    filter: brightness(0.4);
+    transform: translateZ(40px) rotateY(20deg);
+}
+
+.list .item:hover + * + * + * {
+    filter: brightness(0.2);
+    transform: translateZ(20px) rotateY(10deg);
+}
+
+.list.item:has(+ * :hover) {
+    filter: brightness(0.6);
+    transform: translateZ(75px) rotateY(-40deg);
+}
+
+.list.item:has(+ * + * :hover) {
+    filter: brightness(0.4);
+    transform: translateZ(40px) rotateY(-20deg);
+}
+
+.list.item:has(+ * + * + *:hover) {
+    filter: brightness(0.2);
+    transform: translateZ(20px) rotateY(-10deg);
+}
